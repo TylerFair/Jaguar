@@ -1,4 +1,4 @@
-<img align="left" src="https://github.com/user-attachments/assets/e46dec4b-9038-4829-8ff1-21dbca3dfe28" width="250" height="250" /> 
+<img align="left" src="https://github.com/user-attachments/assets/40c600a4-8c59-4f12-9732-c5378bf37973" width="250" height="250" /> 
 
 # JAGUAR (JWST-Jax Accelerated Global Uniform Analysis & Reduction)
 
