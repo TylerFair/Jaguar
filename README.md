@@ -3,4 +3,4 @@
 # JAGUAR (JWST-Jax Accelerated Global Uniform Analysis & Reduction)
 
 
-An attempt to convert the JWST reduction scheme to GPU-support leveraging jax
+A Jax-based JWST exoplanet data reduction framework prioritized to utilize GPU-support. 
