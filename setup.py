@@ -16,7 +16,6 @@ setup(
         "astropy",          
         "corner",           
         "jmespath",         
-        "exotedrf[stage4]",  
         "celerite2",        
         "matplotlib",       
         "pandas",           
