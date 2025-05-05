@@ -17,7 +17,7 @@ from jaxoplanet.light_curves import limb_dark_light_curve
 from jaxoplanet.orbits.transit import TransitOrbit
 from exotic_ld import StellarLimbDarkening
 from plotting import plot_map_fits, plot_map_residuals, plot_transmission_spectrum
-import new_unpack
+import unpack_trace
 import numpyro_ext
 import argparse
 import yaml
@@ -331,7 +331,7 @@ def main():
             print(f"Error: No input Stage 3 files in {input_dir}")
             sys.exit(1)
         for aperturekey in keylist:
-            new_unpack.diagplot(x1dfitslist,aperturekey, nrs, planet_str, output_dir, wl_csv)
+            unpack_trace.diagplot(x1dfitslist,aperturekey, nrs, planet_str, output_dir, wl_csv)
     wl = pd.read_csv(wl_csv)
 
     wl_time = wl.time.values
@@ -453,7 +453,7 @@ def main():
     # --- Low-resolution Analysis ---
     if need_lowres_analysis:
         print(f"\n--- Running Low-Resolution Analysis (Binned every {low_bins} nm) ---")
-        wavelengths_lr, t_lr, indiv_y_lr, yerr_lr = new_unpack.unpack_lc(file_pattern, nrs, planet_str, output_dir, low_bins) 
+        wavelengths_lr, t_lr, indiv_y_lr, yerr_lr = unpack_trace.unpack_lc(file_pattern, nrs, planet_str, output_dir, low_bins) 
 
         ##### APPLY OUTLIER MASK HERE ####
         #wavelengths_lr = wavelengths_lr[~wl_mad_mask]
@@ -640,7 +640,7 @@ def main():
     print(f"\n--- Running High-Resolution Analysis (Binned at {high_bins} nm) ---")
 
 
-    wavelengths_hr, t_hr, indiv_y_hr, yerr_hr = new_unpack.unpack_lc(file_pattern, nrs, planet_str, output_dir, high_bins) 
+    wavelengths_hr, t_hr, indiv_y_hr, yerr_hr = unpack_trace.unpack_lc(file_pattern, nrs, planet_str, output_dir, high_bins) 
 
     ##### APPLY OUTLIER MASK HERE ####
     #wavelengths_hr = wavelengths_hr[~wl_mad_mask]
