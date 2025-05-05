@@ -16,8 +16,8 @@ import pandas as pd
 from jaxoplanet.light_curves import limb_dark_light_curve
 from jaxoplanet.orbits.transit import TransitOrbit
 from exotic_ld import StellarLimbDarkening
-from plotting import plot_map_fits, plot_map_residuals, plot_transmission_spectrum
-import unpack_trace
+from jaguar.Stage4.plotting     import plot_map_fits, plot_map_residuals, plot_transmission_spectrum
+from jaguar.Stage4.unpack_trace import unpack_trace
 import numpyro_ext
 import argparse
 import yaml
@@ -256,16 +256,11 @@ def validate_config(cfg):
     if s_miss or s_extra:
         raise KeyError(f"stellar section bad. missing={s_miss}, unknown={s_extra}")
 
-def main():
-    parser = argparse.ArgumentParser(description="Run transit analysis with YAML config.")
-    parser.add_argument(
-        "-c", "--config", 
-        required=True,            
-        help="Path to YAML configuration file"
-    )
-    args = parser.parse_args()
-
-    cfg = load_config(args.config)
+def main(config_path):
+    """
+    Load the yaml at `config_path` and do your plotting/unpacking, etc.
+    """
+    cfg = yaml.safe_load(open(config_path))
     validate_config(cfg)
 
 
@@ -877,4 +872,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    p = argparse.ArgumentParser()
+    p.add_argument("-c", "--config", required=True)
+    args = p.parse_args()
+    main(args.config)
