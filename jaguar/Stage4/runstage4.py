@@ -872,7 +872,6 @@ def main(config_path):
 
 
 if __name__ == "__main__":
-    import argparse
     p = argparse.ArgumentParser()
     p.add_argument("-c", "--config", required=True)
     args = p.parse_args()
